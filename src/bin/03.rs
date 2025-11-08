@@ -6,7 +6,8 @@ use std::collections::HashSet;
 
 pub fn part_one(input: &str) -> Option<u32> {
     Some(
-        input.lines()
+        input
+            .lines()
             .next()
             .unwrap()
             .split(',')
@@ -44,7 +45,7 @@ pub fn part_three(input: &str) -> Option<u32> {
 
     while !empty {
         empty = true;
-        map.iter_mut().for_each(|(key, value)| {
+        map.iter_mut().for_each(|(_key, value)| {
             if *value != 0 {
                 *value -= 1;
                 empty = false;

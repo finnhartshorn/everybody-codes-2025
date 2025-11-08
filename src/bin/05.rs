@@ -10,8 +10,6 @@ struct Segment {
 }
 
 pub fn part_one(input: &str) -> Option<u64> {
-    let mut sword: Vec<Segment> = Vec::new();
-    let mut answer: String = "".to_string();
     Some(calc_quality(input.lines().next().unwrap()).1)
 }
 
