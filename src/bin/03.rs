@@ -1,15 +1,61 @@
 everybody_codes::solution!(3);
 
-pub fn part_one(input: &str) -> Option<u64> {
-    None
+use std::collections::BTreeMap;
+use std::collections::BTreeSet;
+use std::collections::HashSet;
+
+pub fn part_one(input: &str) -> Option<u32> {
+    Some(
+        input.lines()
+            .next()
+            .unwrap()
+            .split(',')
+            .map(|c| c.parse().unwrap())
+            .collect::<HashSet<u32>>()
+            .into_iter()
+            .sum(),
+    )
 }
 
-pub fn part_two(input: &str) -> Option<u64> {
-    None
+pub fn part_two(input: &str) -> Option<u32> {
+    let mut bt_set = input
+        .lines()
+        .next()
+        .unwrap()
+        .split(',')
+        .map(|c| c.parse().unwrap())
+        .collect::<BTreeSet<u32>>();
+    let mut result: u32 = 0;
+    for _ in 0..20 {
+        result += bt_set.pop_first().unwrap();
+    }
+    Some(result)
 }
 
-pub fn part_three(input: &str) -> Option<u64> {
-    None
+pub fn part_three(input: &str) -> Option<u32> {
+    let mut map = BTreeMap::new();
+    input.lines().next().unwrap().split(',').for_each(|c| {
+        let p: u32 = c.parse().unwrap();
+        map.entry(p).and_modify(|curr| *curr += 1).or_insert(1);
+    });
+
+    let mut sets = 0;
+    let mut empty = false;
+
+    while !empty {
+        empty = true;
+        map.iter_mut().for_each(|(key, value)| {
+            if *value != 0 {
+                *value -= 1;
+                empty = false;
+            }
+        });
+        if !empty {
+            sets += 1
+        }
+    }
+
+    Some(sets)
 }
 
 #[cfg(test)]
