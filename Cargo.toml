@@ -1,0 +1,23 @@
+[package]
+name = "everybody_codes"
+version = "0.1.0"
+edition = "2021"
+default-run = "everybody_codes"
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+doctest = false
+
+[features]
+today = ["chrono"]
+test_lib = []
+
+[dependencies]
+
+# Template dependencies
+chrono = { version = "0.4.38", optional = true }
+pico-args = "0.5.0"
+tinyjson = "2.5.1"
+
+# Solution dependencies
